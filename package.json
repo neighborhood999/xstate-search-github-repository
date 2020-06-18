@@ -1,5 +1,6 @@
 {
   "name": "xstate-search-github-repository",
+  "description": "A search GitHub repository application of statechart-based solutions with xstate.",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
