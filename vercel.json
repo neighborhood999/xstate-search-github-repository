@@ -1,7 +1,7 @@
 {
   "name": "xstate-search-github-repository",
   "version": 2,
-  "alias": ["xstate-search-github-repoistory"],
+  "alias": ["search-github-repository"],
   "regions": ["hnd1"],
   "github": {
     "enabled": true
