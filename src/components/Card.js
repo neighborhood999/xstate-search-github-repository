@@ -12,6 +12,7 @@ function Card({ repo }) {
       display="flex"
       flexDirection="column"
       justifyContent="space-between"
+      flex="1"
       p={4}
       borderWidth="1px"
       borderRadius="5px"

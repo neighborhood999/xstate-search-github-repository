@@ -15,26 +15,12 @@ function useInfiniteScroll({ hasMore, initialLoaded = false, reset = false }) {
   useEffect(() => {
     if (!bottomBoundaryRef.current || !hasMore) return;
 
-    let previousY;
-    let previousRatio = 0;
-
     const listener = entries => {
-      entries.forEach(
-        ({ isIntersecting, intersectionRatio, boundingClientRect }) => {
-          const { y } = boundingClientRect;
+      const first = entries[0];
 
-          if (
-            isIntersecting &&
-            intersectionRatio >= previousRatio &&
-            (!previousY || y < previousY)
-          ) {
-            setPage(page => page + 1);
-          }
-
-          previousY = y;
-          previousRatio = intersectionRatio;
-        }
-      );
+      if (first.isIntersecting) {
+        setPage(page => page + 1);
+      }
     };
 
     const observer = new IntersectionObserver(listener);
