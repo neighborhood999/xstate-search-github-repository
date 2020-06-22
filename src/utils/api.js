@@ -4,7 +4,7 @@ const API = 'https://api.github.com/search/repositories';
 
 export const PER_PAGE = 12;
 
-export async function searchGithubRepos(query = {}) {
+export function searchGithubRepos(query = {}) {
   if (!query.q) return;
 
   const {
@@ -17,9 +17,7 @@ export async function searchGithubRepos(query = {}) {
 
   const api = `${API}?q=${q}&page=${page}&per_page=${per_page}&sort=${sort}&order=${order}`;
 
-  const data = await fetch(api).then(res => res.json());
-
-  return data;
+  return fetch(api).then(res => res.json());
 }
 
 export function handleResponse(data) {

@@ -9,37 +9,21 @@ import {
 } from '@chakra-ui/core';
 
 import StateMachineContext from '../contexts/FSMContext';
-import { handleResponse, searchGithubRepos } from '../utils/api';
 
 function SearchInput() {
   const { state, send } = useContext(StateMachineContext);
-  const keywordRef = useRef(null);
   const inputRef = useRef(null);
+  const keywordRef = useRef(state.context.keyword);
 
   const isDisabled = state.value.fetch === 'pending';
 
   const handleSearch = async () => {
     const keyword = inputRef.current.value;
-    const ctxKeyword = keywordRef.current;
 
-    if (keyword === '' || keyword === ctxKeyword) return;
+    if (keyword === keywordRef.current) return;
 
     send({ type: 'RESET_RESULT', keyword });
     send('FETCH');
-
-    try {
-      const data = await searchGithubRepos({
-        page: state.context + 1,
-        q: keyword
-      });
-
-      const repos = handleResponse(data);
-
-      send({ type: 'RESOLVE', repos, totalCount: data.total_count });
-    } catch (err) {
-      send('REJECT');
-      console.error(err);
-    }
   };
 
   useEffect(() => {

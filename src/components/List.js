@@ -3,7 +3,7 @@ import { Box, Grid, Spinner } from '@chakra-ui/core';
 
 import FSMContext from '../contexts/FSMContext';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
-import { PER_PAGE, handleResponse, searchGithubRepos } from '../utils/api';
+import { PER_PAGE } from '../utils/api';
 
 import Card from './Card';
 
@@ -35,25 +35,9 @@ function List() {
   }, [state.context]);
 
   useEffect(() => {
-    (async () => {
-      if (state.value.fetch === 'success') {
-        send('FETCH');
-
-        try {
-          const data = await searchGithubRepos({
-            page,
-            q: state.context.keyword
-          });
-
-          const repos = handleResponse(data);
-
-          send({ type: 'RESOLVE', repos, totalCount: data.total_count });
-        } catch (err) {
-          send('REJECT');
-          console.error(err);
-        }
-      }
-    })();
+    if (state.value.fetch === 'success') {
+      send('FETCH');
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 

@@ -36,17 +36,20 @@ export const fsm = {
         idle: {
           on: {
             FETCH: {
-              target: 'pending'
+              target: 'pending',
+              cond: 'checkHaveKeyword'
             }
           }
         },
         pending: {
-          on: {
-            RESOLVE: {
+          invoke: {
+            id: 'fetchRepositoriesService',
+            src: 'fetchRepositoriesService',
+            onDone: {
               target: 'success',
               actions: ['fetchSuccess']
             },
-            REJECT: {
+            onError: {
               target: 'failure'
             }
           }

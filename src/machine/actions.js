@@ -1,5 +1,7 @@
 import { assign } from 'xstate';
 
+import { handleResponse } from '../utils/api';
+
 export const fetchSuccess = assign({
   page: ctx => {
     const currentPage = ctx.page + 1;
@@ -7,10 +9,12 @@ export const fetchSuccess = assign({
     return Number(currentPage);
   },
   totalCount: (ctx, event) => {
-    return Number(event.totalCount);
+    return Number(event.data.total_count);
   },
   repositories: (ctx, event) => {
-    return [...ctx.repositories, ...event.repos];
+    const repos = handleResponse(event.data);
+
+    return [...ctx.repositories, ...repos];
   }
 });
 
