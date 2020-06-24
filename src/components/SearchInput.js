@@ -58,7 +58,7 @@ function SearchInput() {
 
   return (
     <Flex justifyContent="center" my={3}>
-      <InputGroup width={['100%', '75%', '50%']}>
+      <InputGroup width={['100%', '50%']}>
         <Input
           ref={inputRef}
           type="text"

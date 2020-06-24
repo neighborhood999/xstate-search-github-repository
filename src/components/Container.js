@@ -9,7 +9,7 @@ function Container({ children }) {
       justifyContent="center"
       width="100%"
       my={3}
-      px={[5, 10]}
+      px={[5, 7, 10]}
     >
       {children}
     </Flex>
