@@ -17,7 +17,7 @@ function SearchInput() {
 
   const isDisabled = state.value.fetch === 'pending';
 
-  const handleSearch = async () => {
+  const handleSearch = () => {
     const keyword = inputRef.current.value;
 
     if (keyword === keywordRef.current) return;
@@ -35,12 +35,12 @@ function SearchInput() {
 
     const inputCllback = () => send({ type: 'TYPING' });
 
-    const keyDownCallback = async event => {
+    const keyDownCallback = event => {
       const key = event.keyCode || event.which;
 
       if (key === 13) {
         input.blur();
-        await handleSearch();
+        handleSearch();
       }
     };
 
@@ -79,9 +79,9 @@ function SearchInput() {
         <Box ml={2}>
           <Button
             variantColor="red"
-            onClick={async () => {
+            onClick={() => {
               send('RETRY');
-              await handleSearch();
+              handleSearch();
             }}
           >
             Retry
