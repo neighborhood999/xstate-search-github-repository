@@ -15,8 +15,6 @@ function SearchInput() {
   const inputRef = useRef(null);
   const keywordRef = useRef(state.context.keyword);
 
-  const isDisabled = state.value.fetch === 'pending';
-
   const handleSearch = () => {
     const keyword = inputRef.current.value;
 
@@ -63,19 +61,25 @@ function SearchInput() {
           ref={inputRef}
           type="text"
           autoFocus
-          borderColor={state.value.fetch === 'failure' ? 'red.500' : 'gray.300'}
+          borderColor={
+            state.matches({ fetch: 'failure ' }) ? 'red.500' : 'gray.300'
+          }
           placeholder="Search..."
-          isDisabled={isDisabled}
+          isDisabled={state.matches({ fetch: 'pending' })}
         />
 
         <InputRightElement width="3.5rem">
-          <Button size="sm" onClick={handleSearch} isDisabled={isDisabled}>
+          <Button
+            size="sm"
+            onClick={handleSearch}
+            isDisabled={state.matches({ fetch: 'pending' })}
+          >
             🔍
           </Button>
         </InputRightElement>
       </InputGroup>
 
-      {state.value.fetch === 'failure' && (
+      {state.matches({ fetch: 'failure' }) && (
         <Box ml={2}>
           <Button
             variantColor="red"

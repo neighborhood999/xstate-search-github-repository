@@ -35,7 +35,7 @@ function List() {
   }, [state.context]);
 
   useEffect(() => {
-    if (state.value.fetch === 'success') {
+    if (state.matches({ fetch: 'success' })) {
       send('FETCH');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
