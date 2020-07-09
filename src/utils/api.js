@@ -10,12 +10,12 @@ export function searchGithubRepos(query = {}) {
   const {
     q,
     page = 1,
-    per_page = PER_PAGE,
+    perPage = PER_PAGE,
     sort = 'stars',
     order = 'desc'
   } = query;
 
-  const api = `${API}?q=${q}&page=${page}&per_page=${per_page}&sort=${sort}&order=${order}`;
+  const api = `${API}?q=${q}&page=${page}&per_page=${perPage}&sort=${sort}&order=${order}`;
 
   return fetch(api).then(res => res.json());
 }

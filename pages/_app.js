@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { CSSReset, ThemeProvider } from '@chakra-ui/core';
 
@@ -11,5 +12,10 @@ function App({ Component, pageProps }) {
     </ThemeProvider>
   );
 }
+
+App.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.oneOfType([PropTypes.object]).isRequired
+};
 
 export default App;
