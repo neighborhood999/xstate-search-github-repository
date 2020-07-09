@@ -92,7 +92,7 @@ Card.propTypes = {
     language: PropTypes.string,
     description: PropTypes.string,
     forksCount: PropTypes.number.isRequired
-  })
+  }).isRequired
 };
 
 export default Card;

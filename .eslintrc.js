@@ -1,3 +1,7 @@
 module.exports = {
-  extends: ['jiepeng']
+  env: {
+    browser: true
+  },
+
+  extends: ['@jiepeng/eslint-config-jiepeng-react']
 };

@@ -74,7 +74,9 @@ function SearchInput() {
             onClick={handleSearch}
             isDisabled={state.matches({ fetch: 'pending' })}
           >
-            🔍
+            <span role="img" aria-label="Search Repository">
+              🔍
+            </span>
           </Button>
         </InputRightElement>
       </InputGroup>
