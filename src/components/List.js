@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Box, Grid, Spinner } from '@chakra-ui/core';
+import { Box, Grid, Spinner } from '@chakra-ui/react';
 
 import FSMContext from '../contexts/FSMContext';
 import { PER_PAGE } from '../utils/api';
