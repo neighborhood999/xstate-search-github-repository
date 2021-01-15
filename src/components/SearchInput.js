@@ -6,7 +6,7 @@ import {
   Input,
   InputGroup,
   InputRightElement
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 
 import StateMachineContext from '../contexts/FSMContext';
 
