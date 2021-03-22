@@ -87,7 +87,9 @@ function Card({ repo }) {
         </Box>
 
         <Box>
-          <Text fontSize="xs">{repo.description}</Text>
+          <Text fontSize="xs" noOfLines={5}>
+            {repo.description}
+          </Text>
         </Box>
       </Box>
 
