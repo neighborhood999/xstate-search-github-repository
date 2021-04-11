@@ -6,7 +6,8 @@ export const fsm = {
     page: 0,
     totalCount: 0,
     keyword: '',
-    repositories: []
+    repositories: [],
+    hasMore: false
   },
   states: {
     search: {

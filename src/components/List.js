@@ -1,47 +1,30 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Box, Grid, Spinner } from '@chakra-ui/react';
+import { useRef } from 'react';
+import { useService } from '@xstate/react';
 
-import FSMContext from '../contexts/FSMContext';
-import { PER_PAGE } from '../utils/api';
+import { useIntersectionObserver } from '../hooks';
 
 import Card from './Card';
 
-function List() {
-  const { state, send } = useContext(FSMContext);
-  const [hasMore, setHasMore] = useState(false);
+// eslint-disable-next-line react/prop-types
+function List({ service }) {
+  const [state, send] = useService(service);
   const bottomBoundaryRef = useRef(null);
 
-  useEffect(() => {
-    if (
-      state.context.page > 0 &&
-      state.context.page * PER_PAGE < state.context.totalCount
-    ) {
-      setHasMore(true);
-    } else {
-      setHasMore(false);
-    }
-  }, [state.context]);
+  const { repositories, hasMore } = state.context;
 
-  useEffect(() => {
-    if (!bottomBoundaryRef.current) return;
-
-    const listener = entries => {
-      const first = entries[0];
-
-      if (first.isIntersecting && hasMore) {
+  useIntersectionObserver({
+    target: bottomBoundaryRef,
+    onIntersect: () => {
+      if (hasMore) {
         send('FETCH');
       }
-    };
+    }
+  });
 
-    const observer = new IntersectionObserver(listener);
-
-    observer.observe(bottomBoundaryRef.current);
-
-    return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasMore]);
-
-  if (state.context.repositories.length === 0) return null;
+  if (repositories.length === 0) {
+    return null;
+  }
 
   return (
     <Box mt={4}>
@@ -56,11 +39,14 @@ function List() {
         ))}
       </Grid>
 
-      {hasMore && (
-        <Box ref={bottomBoundaryRef} d="flex" my={3} justifyContent="center">
-          <Spinner size="lg" />
-        </Box>
-      )}
+      <Box
+        ref={bottomBoundaryRef}
+        display="flex"
+        my={7}
+        justifyContent="center"
+      >
+        {state.matches({ fetch: 'pending' }) && <Spinner size="lg" />}
+      </Box>
     </Box>
   );
 }

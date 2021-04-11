@@ -1,4 +1,3 @@
-import React, { useContext, useEffect, useRef } from 'react';
 import {
   Box,
   Button,
@@ -7,52 +6,44 @@ import {
   InputGroup,
   InputRightElement
 } from '@chakra-ui/react';
+import { useCallback, useEffect, useRef } from 'react';
+import { useService } from '@xstate/react';
 
-import StateMachineContext from '../contexts/FSMContext';
+import { useEventListener } from '../hooks';
 
-function SearchInput() {
-  const { state, send } = useContext(StateMachineContext);
+// eslint-disable-next-line react/prop-types
+function SearchInput({ service }) {
+  const [state, send] = useService(service);
   const inputRef = useRef(null);
   const keywordRef = useRef(state.context.keyword);
 
-  const handleSearch = () => {
+  const handleSearchCallback = useCallback(() => {
     const keyword = inputRef.current.value;
 
     if (keyword === keywordRef.current) return;
 
     send({ type: 'RESET_RESULT', keyword });
     send('FETCH');
-  };
-
-  useEffect(() => {
-    keywordRef.current = state.context.keyword;
-  }, [state.context]);
-
-  useEffect(() => {
-    const input = inputRef.current;
-
-    const inputCllback = () => send({ type: 'TYPING' });
-
-    const keyDownCallback = event => {
+  }, [send]);
+  const inputCallback = useCallback(() => send({ type: 'TYPING' }), [send]);
+  const keyDownCallback = useCallback(
+    event => {
+      const input = inputRef.current;
       const key = event.keyCode || event.which;
 
       if (key === 13) {
         input.blur();
-        handleSearch();
+        handleSearchCallback();
       }
-    };
+    },
+    [handleSearchCallback]
+  );
 
-    input.focus();
-    input.addEventListener('input', inputCllback);
-
-    input.addEventListener('keydown', keyDownCallback);
-
-    return () => {
-      input.removeEventListener('input', inputCllback);
-      input.addEventListener('keydown', keyDownCallback);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useEffect(() => {
+    keywordRef.current = state.context.keyword;
+  }, [state.context]);
+  useEventListener('input', inputRef.current, inputCallback);
+  useEventListener('keydown', inputRef.current, keyDownCallback);
 
   return (
     <Flex justifyContent="center" my={3}>
@@ -71,7 +62,7 @@ function SearchInput() {
         <InputRightElement width="3.5rem">
           <Button
             size="sm"
-            onClick={handleSearch}
+            onClick={handleSearchCallback}
             isDisabled={state.matches({ fetch: 'pending' })}
           >
             <span role="img" aria-label="Search Repository">
@@ -87,7 +78,7 @@ function SearchInput() {
             variantColor="red"
             onClick={() => {
               send('RETRY');
-              handleSearch();
+              handleSearchCallback();
             }}
           >
             Retry
