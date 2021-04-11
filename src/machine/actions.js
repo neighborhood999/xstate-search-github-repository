@@ -1,6 +1,6 @@
 import { assign } from 'xstate';
 
-import { handleResponse } from '../utils/api';
+import { PER_PAGE, handleResponse } from '../utils/api';
 
 export const fetchSuccess = assign({
   page: ctx => {
@@ -15,6 +15,13 @@ export const fetchSuccess = assign({
     const repos = handleResponse(event.data);
 
     return [...ctx.repositories, ...repos];
+  },
+  hasMore: (ctx, event) => {
+    if (ctx.page * PER_PAGE < Number(event.data.total_count)) {
+      return true;
+    }
+
+    return false;
   }
 });
 
