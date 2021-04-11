@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 export function useIntersectionObserver({
   root,
@@ -34,27 +34,4 @@ export function useIntersectionObserver({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target.current, enabled]);
-}
-
-export function useEventListener(eventName, element = window, handler) {
-  const handlerRef = useRef();
-
-  useEffect(() => {
-    handlerRef.current = handler;
-  }, [handler]);
-
-  useEffect(() => {
-    const isSupported = element && element.addEventListener;
-    if (!isSupported) return;
-
-    function eventHandler(event) {
-      return handlerRef.current(event);
-    }
-
-    element.addEventListener(eventName, eventHandler);
-
-    return () => {
-      element.removeEventListener(eventName, eventHandler);
-    };
-  }, [element, eventName]);
 }
