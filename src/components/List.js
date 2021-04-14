@@ -19,7 +19,7 @@ function List({ service }) {
       if (hasMore) {
         send('FETCH');
       }
-    }
+    },
   });
 
   if (repositories.length === 0) {

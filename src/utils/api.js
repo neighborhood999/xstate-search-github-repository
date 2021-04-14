@@ -12,7 +12,7 @@ export function searchGithubRepos(query = {}) {
     page = 1,
     perPage = PER_PAGE,
     sort = 'stars',
-    order = 'desc'
+    order = 'desc',
   } = query;
 
   const api = `${API}?q=${q}&page=${page}&per_page=${perPage}&sort=${sort}&order=${order}`;
@@ -28,6 +28,6 @@ export function handleResponse(data) {
     stars: item.stargazers_count,
     language: item.language,
     description: item.description,
-    forksCount: item.forks_count
+    forksCount: item.forks_count,
   }));
 }

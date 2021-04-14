@@ -6,7 +6,7 @@ export function useIntersectionObserver({
   onIntersect,
   threshold = 1.0,
   rootMargin = '0px',
-  enabled = true
+  enabled = true,
 }) {
   useEffect(() => {
     if (!enabled) {
@@ -19,7 +19,7 @@ export function useIntersectionObserver({
       {
         root: root?.current,
         rootMargin,
-        threshold
+        threshold,
       }
     );
 

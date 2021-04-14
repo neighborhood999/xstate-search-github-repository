@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 import { Box, Icon, Text } from '@chakra-ui/react';
 
 import { getLanguageColor } from '../utils/colors';
@@ -12,10 +11,10 @@ function LanguageColorIcon({ color = 'gray.500' } = {}) {
   );
 }
 LanguageColorIcon.propTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 };
 LanguageColorIcon.defaultProps = {
-  color: 'gray.500'
+  color: 'gray.500',
 };
 
 function StarsIcon() {
@@ -145,8 +144,8 @@ Card.propTypes = {
     stars: PropTypes.number.isRequired,
     language: PropTypes.string,
     description: PropTypes.string,
-    forksCount: PropTypes.number.isRequired
-  }).isRequired
+    forksCount: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default Card;

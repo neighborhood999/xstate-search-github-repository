@@ -8,9 +8,7 @@ export const fetchSuccess = assign({
 
     return Number(currentPage);
   },
-  totalCount: (ctx, event) => {
-    return Number(event.data.total_count);
-  },
+  totalCount: (ctx, event) => Number(event.data.total_count),
   repositories: (ctx, event) => {
     const repos = handleResponse(event.data);
 
@@ -22,13 +20,11 @@ export const fetchSuccess = assign({
     }
 
     return false;
-  }
+  },
 });
 
 export const updateKeyword = assign({
-  keyword: (ctx, event) => {
-    return String(event.keyword);
-  }
+  keyword: (ctx, event) => String(event.keyword),
 });
 
 export const cleanup = assign({
@@ -41,5 +37,5 @@ export const cleanup = assign({
     const repos = [];
 
     return repos;
-  }
+  },
 });

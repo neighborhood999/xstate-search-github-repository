@@ -7,7 +7,7 @@ export const fsm = {
     totalCount: 0,
     keyword: '',
     repositories: [],
-    hasMore: false
+    hasMore: false,
   },
   states: {
     search: {
@@ -16,20 +16,20 @@ export const fsm = {
         idle: {
           on: {
             TYPING: {
-              target: 'keyword'
-            }
-          }
+              target: 'keyword',
+            },
+          },
         },
         keyword: {
           on: {
             RESET_RESULT: {
               target: 'idle',
-              actions: ['cleanup']
-            }
+              actions: ['cleanup'],
+            },
           },
-          exit: 'updateKeyword'
-        }
-      }
+          exit: 'updateKeyword',
+        },
+      },
     },
     fetch: {
       initial: 'idle',
@@ -38,9 +38,9 @@ export const fsm = {
           on: {
             FETCH: {
               target: 'pending',
-              cond: 'checkHaveKeyword'
-            }
-          }
+              cond: 'checkHaveKeyword',
+            },
+          },
         },
         pending: {
           invoke: {
@@ -48,29 +48,29 @@ export const fsm = {
             src: 'fetchRepositoriesService',
             onDone: {
               target: 'success',
-              actions: ['fetchSuccess']
+              actions: ['fetchSuccess'],
             },
             onError: {
-              target: 'failure'
-            }
-          }
+              target: 'failure',
+            },
+          },
         },
         success: {
           on: {
             FETCH: {
-              target: 'pending'
-            }
-          }
+              target: 'pending',
+            },
+          },
         },
         failure: {
           on: {
             RETRY: {
               target: 'pending',
-              actions: ['cleanup']
-            }
-          }
-        }
-      }
-    }
-  }
+              actions: ['cleanup'],
+            },
+          },
+        },
+      },
+    },
+  },
 };
