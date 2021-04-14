@@ -9,7 +9,8 @@
     "dev": "next dev",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "start": "next start"
+    "start": "next start",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.4.1",
@@ -25,19 +26,14 @@
     "xstate": "^4.17.0"
   },
   "devDependencies": {
-    "@jiepeng/eslint-config-jiepeng-react": "^0.0.21",
-    "eslint": "^7.2.0",
-    "husky": "^4.3.7",
-    "lint-staged": "^10.5.3",
+    "@jiepeng/eslint-config-jiepeng-react": "^0.0.23",
+    "eslint": "^7.24.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1"
   },
   "engines": {
     "node": ">=12"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.js": [

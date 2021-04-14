@@ -15,7 +15,7 @@ function App({ Component, pageProps }) {
 
 App.propTypes = {
   Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.oneOfType([PropTypes.object]).isRequired
+  pageProps: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default App;

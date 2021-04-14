@@ -4,7 +4,7 @@ import {
   Flex,
   Input,
   InputGroup,
-  InputRightElement
+  InputRightElement,
 } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef } from 'react';
 import { useService } from '@xstate/react';

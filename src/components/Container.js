@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 import { Flex } from '@chakra-ui/react';
 
 function Container({ children }) {
@@ -17,7 +16,7 @@ function Container({ children }) {
 }
 
 Container.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default Container;
