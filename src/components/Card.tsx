@@ -1,21 +1,15 @@
-import PropTypes from 'prop-types';
-import { Box, Icon, Text } from '@chakra-ui/react';
+import { Box, Icon, Text, IconProps } from '@chakra-ui/react';
 
-import { getLanguageColor } from '../utils/colors';
+import { getLanguageColor } from '@utils/colors';
+import { Repository } from '@utils/api';
 
-function LanguageColorIcon({ color = 'gray.500' } = {}) {
+function LanguageColorIcon({ color = 'gray.500', ...props }: IconProps) {
   return (
-    <Icon viewBox="0 0 100 100" color={color}>
+    <Icon viewBox="0 0 100 100" color={color} {...props}>
       <circle fill="currentColor" cx="50" cy="50" r="50" />
     </Icon>
   );
 }
-LanguageColorIcon.propTypes = {
-  color: PropTypes.string,
-};
-LanguageColorIcon.defaultProps = {
-  color: 'gray.500',
-};
 
 function StarsIcon() {
   return (
@@ -57,7 +51,7 @@ function ForkIcon() {
   );
 }
 
-function Card({ repo }) {
+export function Card(repo: Repository) {
   const lang = getLanguageColor(repo.language);
 
   return (
@@ -135,17 +129,3 @@ function Card({ repo }) {
     </Box>
   );
 }
-
-Card.propTypes = {
-  repo: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    htmlURL: PropTypes.string.isRequired,
-    stars: PropTypes.number.isRequired,
-    language: PropTypes.string,
-    description: PropTypes.string,
-    forksCount: PropTypes.number.isRequired,
-  }).isRequired,
-};
-
-export default Card;
