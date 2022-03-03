@@ -1,11 +1,11 @@
 import Head from 'next/head';
 
-function Meta() {
+export function Meta() {
   return (
     <Head>
       <title>XState Search GitHub Repository</title>
 
-      <meta charSet="utf-8" />
+      <meta charSet="utf8" />
       <meta name="author" content="Peng Jie" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta name="theme-color" content="#fff" />
@@ -52,5 +52,3 @@ function Meta() {
     </Head>
   );
 }
-
-export default Meta;
