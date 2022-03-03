@@ -4,7 +4,7 @@ interface Props extends FlexProps {
   children: ReactNode;
 }
 
-function Container({ children, ...props }: Props) {
+export function Container({ children, ...props }: Props) {
   return (
     <Flex
       direction="column"
@@ -18,5 +18,3 @@ function Container({ children, ...props }: Props) {
     </Flex>
   );
 }
-
-export default Container;
