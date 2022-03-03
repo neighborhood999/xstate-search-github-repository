@@ -43,8 +43,17 @@ export const globalStateMachine = globalStateModel.createMachine(
               RESET_RESULT: {
                 target: 'idle',
                 actions: [
-                  assign(() => {
+                  assign((ctx, event) => {
+                    if (event.type !== 'RESET_RESULT') {
+                      return {
+                        keyword: ctx.keyword,
+                        page: 0,
+                        repositories: [],
+                      };
+                    }
+
                     return {
+                      keyword: String(event.keyword),
                       page: 0,
                       repositories: [],
                     };
@@ -52,19 +61,6 @@ export const globalStateMachine = globalStateModel.createMachine(
                 ],
               },
             },
-            exit: [
-              assign((ctx, event) => {
-                if (event.type !== 'RESET_RESULT') {
-                  return {
-                    keyword: ctx.keyword,
-                  };
-                }
-
-                return {
-                  keyword: String(event.keyword),
-                };
-              }),
-            ],
           },
         },
       },
