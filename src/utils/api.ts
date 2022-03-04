@@ -67,5 +67,8 @@ export function searchGithubRepos(query: SearchGithubRepos) {
         description: item.description,
         forksCount: item.forks_count,
       })),
-    }));
+    }))
+    .catch((error) => {
+      console.error(error);
+    });
 }
