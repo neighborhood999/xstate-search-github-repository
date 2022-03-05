@@ -12,8 +12,10 @@ const customJestConfig = {
     '^@machine/(.*)$': '<rootDir>/src/machine/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
+    '^@test/(.*)$': '<rootDir>/test/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
+  setupFilesAfterEnv: ['<rootDir>/test/jest.setup.ts'],
 };
 
 module.exports = createJestConfig(customJestConfig);

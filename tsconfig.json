@@ -30,6 +30,9 @@
       ],
       "@machine/*": [
         "src/machine/*"
+      ],
+      "@test/*": [
+        "test/*"
       ]
     },
     "incremental": true

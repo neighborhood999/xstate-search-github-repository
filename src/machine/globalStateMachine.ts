@@ -128,7 +128,7 @@ export const globalStateMachine = globalStateModel.createMachine(
   {
     actions: {},
     services: {
-      fetchRepositoriesService: (ctx) => {
+      fetchRepositoriesService: async (ctx) => {
         const query = {
           q: ctx.keyword,
           page: ctx.page + 1,

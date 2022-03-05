@@ -39,7 +39,10 @@ export const PER_PAGE = 16;
 
 export function searchGithubRepos(query: SearchGithubRepos) {
   if (!query.q) {
-    return;
+    return {
+      totalCount: 0,
+      repositories: [],
+    };
   }
 
   const {
@@ -67,8 +70,5 @@ export function searchGithubRepos(query: SearchGithubRepos) {
         description: item.description,
         forksCount: item.forks_count,
       })),
-    }))
-    .catch((error) => {
-      console.error(error);
-    });
+    }));
 }
