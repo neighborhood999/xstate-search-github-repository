@@ -30,20 +30,20 @@ specifiers:
   react: ^17.0.2
   react-dom: ^17.0.2
   typescript: ^4.5.5
-  xstate: ^4.30.3
+  xstate: ^4.30.5
 
 dependencies:
   '@chakra-ui/react': 1.8.5_189e00a0932443dc19f4914207ca4c5f
   '@emotion/react': 11.8.1_7c3ecd89bd75b61b41f2029715ea2305
   '@emotion/styled': 11.8.1_c697ad3c4ddb0545c7a1d619984abba5
   '@xstate/inspect': 0.6.2
-  '@xstate/react': 2.0.1_98da4714bdb63506ac85b10cca726b0c
+  '@xstate/react': 2.0.1_a33710cf737721ee18860494dc669d8c
   framer-motion: 6.2.8_react-dom@17.0.2+react@17.0.2
   isomorphic-unfetch: 3.1.0
   next: 12.1.0_33bdac975a6e334c49640fab91e2abb4
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
-  xstate: 4.30.3
+  xstate: 4.30.5
 
 devDependencies:
   '@babel/core': 7.17.5
@@ -2153,7 +2153,7 @@ packages:
       fast-safe-stringify: 2.1.1
     dev: false
 
-  /@xstate/react/2.0.1_98da4714bdb63506ac85b10cca726b0c:
+  /@xstate/react/2.0.1_a33710cf737721ee18860494dc669d8c:
     resolution: {integrity: sha512-sT3hxyzNBw+bm7uT3BP+uXzN0MnRqiaj/U9Yl4OYaMAUJXWsRvSA/ipL7EDf0gVLRGrRhJTCsC0cjWaduAAqnw==}
     peerDependencies:
       '@xstate/fsm': ^1.6.5
@@ -2168,7 +2168,7 @@ packages:
       react: 17.0.2
       use-isomorphic-layout-effect: 1.1.1_a0c521d4794c7ad97f5f4c1c4a7d5818
       use-subscription: 1.5.1_react@17.0.2
-      xstate: 4.30.3
+      xstate: 4.30.5
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -6323,8 +6323,8 @@ packages:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
     dev: true
 
-  /xstate/4.30.3:
-    resolution: {integrity: sha512-ccFjxRKvLq5Fap9+Cc2barHjdEqcDMLZOnHKhslGPgOknM/GKku744Hixm7PzBfQolKQqi/oLQcYm6C5GCULyg==}
+  /xstate/4.30.5:
+    resolution: {integrity: sha512-iZhIoZP8Alq4qI8eN/iAYiBRLfLSbSdI29LYsgk2DUvAwMV2J9xGw6CUT2HcH+5Rp5G3XzG6ByRfRmJJ+eEuDQ==}
     dev: false
 
   /y18n/5.0.8:

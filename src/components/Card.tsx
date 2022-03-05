@@ -65,25 +65,15 @@ export function Card(repo: Repository) {
       borderRadius="5px"
     >
       <Box mb={3}>
-        <Box pb={2}>
-          <Text
-            isTruncated
-            color="blue.500"
-            href={repo.htmlURL}
-            fontSize="md"
-            as="a"
-            target="_blank"
-            rel="noopener"
-          >
+        <Box pb={2} as="a" href={repo.htmlURL} target="_blank" rel="noopener">
+          <Text isTruncated color="blue.500" fontSize="md">
             {repo.name}
           </Text>
         </Box>
 
-        <Box>
-          <Text fontSize="xs" noOfLines={5}>
-            {repo.description}
-          </Text>
-        </Box>
+        <Text mt={1} fontSize="xs" noOfLines={5}>
+          {repo.description}
+        </Text>
       </Box>
 
       <Box mt={3} display="flex" color="gray.500">
